@@ -17,6 +17,11 @@ def start(serverInfo):
 			return 0;
 		else:
 			s.send(pickle.dumps(crypto.encrypt(quest)));
+			packet = 0;
+			while 1:
+				packet = s.recv(serverInfo[2]);
+				if(packet):
+					break;
 	
 	
 server = cmdargs.getServerInfo();
