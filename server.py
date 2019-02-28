@@ -7,18 +7,33 @@ import tts
 
 def start(serverInfo):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
+	print("Created socket at:",serverInfo[0], "on port:", serverInfo[1]);
 	s.bind(("",serverInfo[1]));
 	s.listen(1);
+	print("Listening for client connections");
 	client, address = s.accept();
+	print("Accepted client connection from:", serverInfo[0], "on port:", serverInfo[1] );
 	while 1:
+		print("Waiting on question");
 		packet = client.recv(serverInfo[2]);
+		print("Received data: ", packet);
 		if(packet):
 			query = crypto.decrypt(pickle.loads(packet));
-			print(query);
-			tts.playVoice(query);
+			
+			print("Speaking question:",query);
+			#tts.playVoice(query);
+			
+			print("Sending question to Wolfram Alpha:", query );
 			ans = wolfram.getResponse(query);
-			print(ans);
-			tts.playVoice(ans);
+			
+			print("Received answer from Wolfram Alpha:", ans);
+			
+			print("Sending answer:" ,ans); 
+			
+			client.send(pickle.dumps(crypto.encrypt(ans))); # encrypt the data and send it to the other side. This has an error. Any ideas how to do this?
+		
+			
+			break; # I got tired of this infinite loop
 
 server = cmdargs.getServerInfo();
 if(server == -1):
