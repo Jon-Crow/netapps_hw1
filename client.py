@@ -5,6 +5,7 @@ import cmdargs
 import pickle
 import crypto
 import qrtools
+import QR
 	
 def getQuestion():
 	qr = qrtools.QR()
@@ -17,7 +18,7 @@ def start(serverInfo):
 	print("Connecting to:", serverInfo[0], "on port:", serverInfo[2]);
 	print("Listening for QR codes from RPi Camera that contains question");
 	while 1:
-		quest = getQuestion();
+		quest = QR.decodeQR();
 		if(quest == 'exit'):
 			return 0;
 		else:
@@ -35,7 +36,7 @@ def start(serverInfo):
 			decrypted_data = crypto.decrypt(pickle.loads(packet)); # decrypt the payload
 			
 			print("Speaking answer", decrypted_data);   #speaking the answer
-			tts.playVoice(decrypted_data);
+			#tts.playVoice(decrypted_data);
 	
 		break;
 	

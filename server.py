@@ -21,7 +21,7 @@ def start(serverInfo):
 			query = crypto.decrypt(pickle.loads(packet));
 			
 			print("Speaking question:",query);
-			tts.playVoice(query);
+			#tts.playVoice(query);
 			
 			print("Sending question to Wolfram Alpha:", query );
 			ans = wolfram.getResponse(query);
