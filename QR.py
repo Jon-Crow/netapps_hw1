@@ -2,9 +2,9 @@
 #from picamera.array import PiRGBArray
 #from picamera import PiCamera
 
-from qrtools import qrtools
-import zbar
-
+import qrtools
+#need to install python-qrtools, libzbar-dev. Pillow if needed. 
+#in the usr/lib/python2.7/dist-packages Change line 181 from tostring() to tobytes()
  
 # initialize the camera and grab a reference to the raw camera capture
 #camera = PiCamera()
@@ -20,7 +20,7 @@ import zbar
 # display the image on screen and wait for a keypress
 #cv2.imshow("Image", image)
 #cv2.waitKey(0)
-
-qr = qrtools.QR()
-qr.decode("qrcode.jpeg")
-print (qr.data)
+def decodeQR():
+	qr = qrtools.QR()
+	qr.decode("qrcode.jpeg")
+	return(qr.data)

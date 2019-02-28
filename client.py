@@ -4,9 +4,12 @@ import socket
 import cmdargs
 import pickle
 import crypto
+import qrtools
 	
 def getQuestion():
-	return input("New Question:");
+	qr = qrtools.QR()
+	qr.decode("qrcode.jpeg")
+	return(qr.data)
 	
 def start(serverInfo):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
@@ -32,7 +35,7 @@ def start(serverInfo):
 			decrypted_data = crypto.decrypt(pickle.loads(packet)); # decrypt the payload
 			
 			print("Speaking answer", decrypted_data);   #speaking the answer
-			#tts.playVoice(decrypted_data);
+			tts.playVoice(decrypted_data);
 	
 		break;
 	

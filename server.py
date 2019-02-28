@@ -21,16 +21,16 @@ def start(serverInfo):
 			query = crypto.decrypt(pickle.loads(packet));
 			
 			print("Speaking question:",query);
-			#tts.playVoice(query);
+			tts.playVoice(query);
 			
 			print("Sending question to Wolfram Alpha:", query );
 			ans = wolfram.getResponse(query);
 			
 			print("Received answer from Wolfram Alpha:", ans);
 			
-			print("Sending answer:" ,ans); 
+			client.send(pickle.dumps(crypto.encrypt(ans))); 
 			
-			client.send(pickle.dumps(crypto.encrypt(ans))); # encrypt the data and send it to the other side. This has an error. Any ideas how to do this?
+			print("Sending answer:" ,ans); 
 		
 			
 			break; # I got tired of this infinite loop
