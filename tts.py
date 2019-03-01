@@ -1,11 +1,11 @@
 from watson_developer_cloud import TextToSpeechV1
-import apikeys
+import ClientKeys
 from playsound import playsound
 import os
 
 text_to_speech = TextToSpeechV1(
-    iam_apikey=apikeys.IBM_API_KEY,
-    url=apikeys.IBM_URL
+    iam_apikey=ClientKeys.IBM_API_KEY,
+    url=ClientKeys.IBM_URL
 );
 
 def playVoice(speak):

@@ -1,7 +1,7 @@
-import apikeys
+import ServerKeys
 import wolframalpha
 
-client = wolframalpha.Client(apikeys.WOLFRAM_KEY);
+client = wolframalpha.Client(ServerKeys.WOLFRAM_KEY);
 
 def getResponse(query):
 	res = client.query(query);
