@@ -9,11 +9,6 @@ import tts
 import audio
 from time import sleep
 	
-def getQuestion():
-	qr = qrtools.QR()
-	qr.decode("qrcode.jpeg")
-	return(qr.data)
-	
 def start(serverInfo):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
 	s.connect((serverInfo[0],serverInfo[1]));
@@ -33,7 +28,7 @@ def start(serverInfo):
 			
 			questenc = pickle.dumps(crypto.encrypt(quest));
 			
-			print("Sending data:", questenc, "\n");
+			print("Sending data:", quest, "\n");
 			
 			s.send(questenc);
 			
@@ -51,9 +46,6 @@ def start(serverInfo):
 			audio.play();
 			
 			sleep(1)
-	
-		break;
-	
 	
 server = cmdargs.getServerInfo();
 if(server == -1 or server[0] == -1):

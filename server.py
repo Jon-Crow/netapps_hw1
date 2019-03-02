@@ -39,7 +39,6 @@ def start(serverInfo):
 			
 			print("Sending answer:" ,ans); 
 			
-			break; 
 
 server = cmdargs.getServerInfo();
 if(server == -1):
