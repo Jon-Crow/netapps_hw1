@@ -19,7 +19,12 @@ def start(serverInfo):
 	print("Connecting to:", serverInfo[0], "on port:", serverInfo[2]);
 	print("Listening for QR codes from RPi Camera that contains question");
 	while 1:
-		quest = QR.decodeQR();
+		quest = []
+		while not quest:
+			QR.captureQR();
+			quest = QR.decodeQR();
+
+		quest = quest[0][0];
 		if(quest == 'exit'):
 			return 0;
 		else:
