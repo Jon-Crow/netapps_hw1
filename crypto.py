@@ -10,7 +10,7 @@ def encrypt(data):
 	f = Fernet(key);
 	enc = f.encrypt(data);
 	print("Encrypt Key:", key, "Ciphertext:", enc);
-	print("Generated MD5 Checksum:", getHash(enc));   #Is this where it needs to be? 
+	print("Generated MD5 Checksum:", getHash(enc));  
 	return (key, enc, getHash(enc));
 def decrypt(data):
 	f = Fernet(data[0]);

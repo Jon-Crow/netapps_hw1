@@ -5,39 +5,41 @@ import crypto
 import wolfram
 import tts
 import audio
+from time import sleep
 
 def start(serverInfo):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
-	print("Created socket at:",serverInfo[0], "on port:", serverInfo[1]);
+	print("\nCreated socket at:",serverInfo[0], "on port:", serverInfo[1], "\n");
 	s.bind(("",serverInfo[1]));
 	s.listen(1);
-	print("Listening for client connections");
+	print("Listening for client connections \n");
 	client, address = s.accept();
-	print("Accepted client connection from:", serverInfo[0], "on port:", serverInfo[1] );
+	print("Accepted client connection from:", serverInfo[0], "on port:", serverInfo[1], "\n");
 	while 1:
-		print("Waiting on question");
+		print("Waiting on question \n");
 		packet = client.recv(serverInfo[2]);
-		print("Received data: ", packet);
+		print("Received data: ", packet, "\n");
 		if(packet):
 			query = crypto.decrypt(pickle.loads(packet));
 			
-			print("Speaking question:",query);
+			print("Speaking question:",query, "\n");
 			tts.playVoice(query);
 			audio.play()
 			
-			print("Sending question to Wolfram Alpha:", query );
+			sleep(1)
+			
+			print("\nSending question to Wolfram Alpha:", query, "\n");
 			ans = wolfram.getResponse(query);
 			
-			print("Received answer from Wolfram Alpha:", ans);
+			print("Received answer from Wolfram Alpha:", ans, "\n");
 			
 			ansenc = ans.encode('utf-8');
 			
 			client.send(pickle.dumps(crypto.encrypt(ansenc))); 
 			
 			print("Sending answer:" ,ans); 
-		
 			
-			break; # I got tired of this infinite loop
+			break; 
 
 server = cmdargs.getServerInfo();
 if(server == -1):
