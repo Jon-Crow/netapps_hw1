@@ -14,5 +14,4 @@ def playVoice(speak):
 		speak = speak.decode("utf-8");
 	file.write(text_to_speech.synthesize(speak,'audio/wav','en-US_AllisonVoice').get_result().content);
 	file.close();
-	playsound(os.path.abspath('voice.wav'));
 	

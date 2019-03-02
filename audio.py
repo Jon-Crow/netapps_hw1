@@ -1,10 +1,5 @@
 import vlc
+import subprocess
 
 def play():
-	player = vlc.MediaPlayer('voice.wav');
-	player.play()
-	while player.is_playing():
-		continue;
-	player.stop();
-	
-play();
+	subprocess.Popen(["/usr/bin/cvlc", "/home/pi/Desktop/netapps_hw1/voice.wav"])

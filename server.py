@@ -4,6 +4,7 @@ import pickle
 import crypto
 import wolfram
 import tts
+import audio
 
 def start(serverInfo):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
@@ -21,7 +22,8 @@ def start(serverInfo):
 			query = crypto.decrypt(pickle.loads(packet));
 			
 			print("Speaking question:",query);
-			#tts.playVoice(query);
+			tts.playVoice(query);
+			audio.play()
 			
 			print("Sending question to Wolfram Alpha:", query );
 			ans = wolfram.getResponse(query);

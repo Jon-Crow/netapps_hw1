@@ -4,8 +4,9 @@ import socket
 import cmdargs
 import pickle
 import crypto
-import qrtools
 import QR
+import tts
+import audio
 	
 def getQuestion():
 	qr = qrtools.QR()
@@ -36,7 +37,8 @@ def start(serverInfo):
 			decrypted_data = crypto.decrypt(pickle.loads(packet)); # decrypt the payload
 			
 			print("Speaking answer", decrypted_data);   #speaking the answer
-			#tts.playVoice(decrypted_data);
+			tts.playVoice(decrypted_data);
+			audio.play();
 	
 		break;
 	
