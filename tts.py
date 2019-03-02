@@ -1,6 +1,5 @@
 from watson_developer_cloud import TextToSpeechV1
 import ClientKeys
-from playsound import playsound
 import os
 
 text_to_speech = TextToSpeechV1(

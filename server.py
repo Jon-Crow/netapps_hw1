@@ -30,7 +30,9 @@ def start(serverInfo):
 			
 			print("Received answer from Wolfram Alpha:", ans);
 			
-			client.send(pickle.dumps(crypto.encrypt(ans))); 
+			ansenc = ans.encode('utf-8');
+			
+			client.send(pickle.dumps(crypto.encrypt(ansenc))); 
 			
 			print("Sending answer:" ,ans); 
 		
