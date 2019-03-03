@@ -2,6 +2,9 @@ from watson_developer_cloud import TextToSpeechV1
 import ClientKeys
 import os
 
+#https://watson-developer-cloud-python-sdk.readthedocs.io/en/latest/
+
+
 text_to_speech = TextToSpeechV1(
     iam_apikey=ClientKeys.IBM_API_KEY,
     url=ClientKeys.IBM_URL

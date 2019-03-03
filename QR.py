@@ -1,6 +1,10 @@
 import cv2
 from pyzbar.pyzbar import decode
 
+#CV2 - https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_gui/py_image_display/py_image_display.html
+#QR - https://pypi.org/project/pyzbar/
+
+
 def captureQR():
 	cam = cv2.VideoCapture(0)
 	ret, image = cam.read()

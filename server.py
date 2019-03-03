@@ -7,6 +7,9 @@ import tts
 import audio
 from time import sleep
 
+#Most of this code was given by Plymale
+#http://code.activestate.com/recipes/577667-pickle-tofrom-socket/
+
 def start(serverInfo):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
 	print("\nCreated socket at:",serverInfo[0], "on port:", serverInfo[1], "\n");

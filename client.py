@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+#Most of this code was given by Plymale
+#http://code.activestate.com/recipes/577667-pickle-tofrom-socket/
+
 import socket
 import cmdargs
 import pickle

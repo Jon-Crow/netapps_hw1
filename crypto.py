@@ -1,6 +1,8 @@
 from cryptography.fernet import Fernet
 import hashlib
 
+#https://cryptography.io/en/latest/fernet/
+
 def getHash(val):
 	m = hashlib.md5();
 	m.update(val);
